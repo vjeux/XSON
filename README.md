@@ -1,24 +1,11 @@
-# URL Object Notation
+# Smallest JSON equivalent in XML
 
-An Object Notation like JSON but for URLs. [Read the full explanation on my blog](http://blog.vjeux.com/2011/javascript/urlon-url-object-notation.html).
+[Read the full explanation on my blog](http://blog.vjeux.com/2013/xson-smallest-json-equivalent-in-xml)
 
-## Get URLON
-
-You first need to enable URLON.
-
-### NPM
-URLON is on [NPM] (http://search.npmjs.org/#/URLON).
+## Get XSON
 
 ```
-npm install URLON
-```
-```
-var URLON = require('URLON');
-```
-
-### Webpage
-```
-<script src="https://raw.github.com/vjeux/URLON/master/src/urlon.js"></script>
+<script src="https://raw.github.com/vjeux/XSON/master/src/xson.js"></script>
 ```
 
 ## Usage
@@ -26,15 +13,23 @@ var URLON = require('URLON');
 ### stringify
 
 ```
-URLON.stringify('{"table":{"achievement":{"column":"instance","ascending":true}}}')
+XSON.stringify({"table":{"achievement":{"column":"instance","ascending":true}}}, null, '  ')
 
-// Output:      '_table_achievement_column=instance&ascending:true'
+// Output:
+<o>
+  <o k="table">
+    <o k="achievement">
+      <s k="column">instance</s>
+      <t k="ascending"/>
+    </o>
+  </o>
+</o>
 ```
 
 ### parse
 
 ```
-URLON.parse('_table_achievement_column=instance&ascending:true')
+XSON.parse('<o><o k="table"><o k="achievement"><s k="column">instance</s><t k="ascending"/></o></o></o>')
 
 // Output:  {"table":{"achievement":{"column":"instance","ascending":true}}}
 ```
