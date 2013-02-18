@@ -32,6 +32,14 @@ XSON.stringify({"table":{"achievement":{"column":"instance","ascending":true}}},
 ```javascript
 XSON.parse('<o><o k="table"><o k="achievement"><s k="column">instance</s><t k="ascending"/></o></o></o>')
 
-// Output:  {"table":{"achievement":{"column":"instance","ascending":true}}}
+// Output:
+{
+  "table": {
+    "achievement": {
+      "column": "instance",
+      "ascending": true
+    }
+  }
+}
 ```
 
