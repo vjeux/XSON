@@ -24,7 +24,7 @@ var XSON = {
 	    }
             
             if (typeof obj === 'string') {
-		if (!string.length) {
+		if (!obj.length) {
                     return indent(type === 'html' ? '<s></s>' : '<s/>');
 		}
                 return indent('<s>' + encode(obj) + '</s>');
