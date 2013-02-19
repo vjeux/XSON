@@ -1,5 +1,5 @@
 var XSON = {
-    stringify: function (obj, replacer, space) {
+    stringify: function (obj, replacer, space, type) {
         if (replacer) {
             throw new Exception('Replacer is not supported');
         }
@@ -24,27 +24,33 @@ var XSON = {
 	    }
             
             if (typeof obj === 'string') {
+		if (!string.length) {
+                    return indent(type === 'html' ? '<s></s>' : '<s/>');
+		}
                 return indent('<s>' + encode(obj) + '</s>');
             }
             
             if (obj === null || obj === undefined) {
-                return indent('<l/>');
+                return indent(type === 'html' ? '<l></l>' : '<l/>');
             }
             
             if (typeof obj === 'boolean') {
                 if (obj) {
-                    return indent('<t/>');
+                    return indent(type === 'html' ? '<t></t>' : '<t/>');
                 }
-                return indent('<f/>');
+                return indent(type === 'html' ? '<f></f>' : '<f/>');
             }
             
             if (typeof obj === 'number') {
+		if (obj !== obj) {
+                    return indent(type === 'html' ? '<n></n>' : '<n/>');
+		}
                 return indent('<n>' + obj + '</n>');
             }
             
             if ('slice' in obj) {
                 if (!obj.length) {
-                    return indent('<a/>');
+                    return indent(type === 'html' ? '<a></a>' : '<a/>');
                 }
                 return indent('<a>') + obj.map(function (obj) {
                     return rec(obj, level + 1);
@@ -58,7 +64,7 @@ var XSON = {
                 elements.push(element.substr(0, pos) + ' k="' + encode(key) + '"' + element.substr(pos));
             }
             if (!elements.length) {
-                return indent('<o/>');
+                return indent(type === 'html' ? '<o></o>' : '<o/>');
             }
             return indent('<o>') + elements.join('') + indent('</o>');
         }
