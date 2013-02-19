@@ -4,7 +4,7 @@
 
 ## Get XSON
 
-```
+```html
 <script src="https://raw.github.com/vjeux/XSON/master/src/xson.js"></script>
 ```
 
@@ -12,10 +12,11 @@
 
 ### stringify
 
-```
+```javascript
 XSON.stringify({"table":{"achievement":{"column":"instance","ascending":true}}}, null, '  ')
-
 // Output:
+```
+```xml
 <o>
   <o k="table">
     <o k="achievement">
@@ -28,9 +29,17 @@ XSON.stringify({"table":{"achievement":{"column":"instance","ascending":true}}},
 
 ### parse
 
-```
+```javascript
 XSON.parse('<o><o k="table"><o k="achievement"><s k="column">instance</s><t k="ascending"/></o></o></o>')
 
-// Output:  {"table":{"achievement":{"column":"instance","ascending":true}}}
+// Output:
+{
+  "table": {
+    "achievement": {
+      "column": "instance",
+      "ascending": true
+    }
+  }
+}
 ```
 
